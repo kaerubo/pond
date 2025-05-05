@@ -1,0 +1,14 @@
+# <type>(<scope>): <short summary>
+#
+# Example:
+# feat(auth): add login via OAuth
+
+# -----------------------------
+# Common commit types:
+# feat:     A new feature
+# fix:      A bug fix
+# docs:     Documentation only changes
+# style:    Changes that do not affect the meaning of the code (formatting)
+# refactor: A code change that neither fixes a bug nor adds a feature
+# test:     Adding or fixing tests
+# chore:    Changes to the build process or auxiliary tools
