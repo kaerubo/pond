@@ -1,3 +1,3 @@
-module github.com/z6wdc/pond
+module github.com/kaerubo/pond
 
 go 1.24.2
