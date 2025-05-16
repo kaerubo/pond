@@ -1,3 +1,4 @@
+//go:generate mockgen -source=kero_repository.go -destination=../../internal/test/mock/kero_repository.go -package=mock
 package repository
 
 import (
