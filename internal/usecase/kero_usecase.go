@@ -10,8 +10,11 @@ type KeroCreator interface {
 	Create(ctx context.Context, k *entity.Kero) error
 }
 
-type KeroReader interface {
-	GetByID(ctx context.Context, id int64) (*entity.Kero, error)
+type KeroByIDReader interface {
+	GetByID(ctx context.Context, id string) (*entity.Kero, error)
+}
+
+type KeroLister interface {
 	List(ctx context.Context) ([]*entity.Kero, error)
 }
 
@@ -20,5 +23,5 @@ type KeroUpdater interface {
 }
 
 type KeroDeleter interface {
-	Delete(ctx context.Context, id int64) error
+	Delete(ctx context.Context, id string) error
 }

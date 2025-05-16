@@ -55,47 +55,32 @@ func (mr *MockKeroSaverMockRecorder) Save(ctx, k any) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Save", reflect.TypeOf((*MockKeroSaver)(nil).Save), ctx, k)
 }
 
-// MockKeroFinder is a mock of KeroFinder interface.
-type MockKeroFinder struct {
+// MockKeroByIDFinder is a mock of KeroByIDFinder interface.
+type MockKeroByIDFinder struct {
 	ctrl     *gomock.Controller
-	recorder *MockKeroFinderMockRecorder
+	recorder *MockKeroByIDFinderMockRecorder
 	isgomock struct{}
 }
 
-// MockKeroFinderMockRecorder is the mock recorder for MockKeroFinder.
-type MockKeroFinderMockRecorder struct {
-	mock *MockKeroFinder
+// MockKeroByIDFinderMockRecorder is the mock recorder for MockKeroByIDFinder.
+type MockKeroByIDFinderMockRecorder struct {
+	mock *MockKeroByIDFinder
 }
 
-// NewMockKeroFinder creates a new mock instance.
-func NewMockKeroFinder(ctrl *gomock.Controller) *MockKeroFinder {
-	mock := &MockKeroFinder{ctrl: ctrl}
-	mock.recorder = &MockKeroFinderMockRecorder{mock}
+// NewMockKeroByIDFinder creates a new mock instance.
+func NewMockKeroByIDFinder(ctrl *gomock.Controller) *MockKeroByIDFinder {
+	mock := &MockKeroByIDFinder{ctrl: ctrl}
+	mock.recorder = &MockKeroByIDFinderMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockKeroFinder) EXPECT() *MockKeroFinderMockRecorder {
+func (m *MockKeroByIDFinder) EXPECT() *MockKeroByIDFinderMockRecorder {
 	return m.recorder
 }
 
-// FindAll mocks base method.
-func (m *MockKeroFinder) FindAll(ctx context.Context) ([]*entity.Kero, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "FindAll", ctx)
-	ret0, _ := ret[0].([]*entity.Kero)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// FindAll indicates an expected call of FindAll.
-func (mr *MockKeroFinderMockRecorder) FindAll(ctx any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindAll", reflect.TypeOf((*MockKeroFinder)(nil).FindAll), ctx)
-}
-
 // FindByID mocks base method.
-func (m *MockKeroFinder) FindByID(ctx context.Context, id int64) (*entity.Kero, error) {
+func (m *MockKeroByIDFinder) FindByID(ctx context.Context, id string) (*entity.Kero, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindByID", ctx, id)
 	ret0, _ := ret[0].(*entity.Kero)
@@ -104,9 +89,48 @@ func (m *MockKeroFinder) FindByID(ctx context.Context, id int64) (*entity.Kero, 
 }
 
 // FindByID indicates an expected call of FindByID.
-func (mr *MockKeroFinderMockRecorder) FindByID(ctx, id any) *gomock.Call {
+func (mr *MockKeroByIDFinderMockRecorder) FindByID(ctx, id any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByID", reflect.TypeOf((*MockKeroFinder)(nil).FindByID), ctx, id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByID", reflect.TypeOf((*MockKeroByIDFinder)(nil).FindByID), ctx, id)
+}
+
+// MockKeroLister is a mock of KeroLister interface.
+type MockKeroLister struct {
+	ctrl     *gomock.Controller
+	recorder *MockKeroListerMockRecorder
+	isgomock struct{}
+}
+
+// MockKeroListerMockRecorder is the mock recorder for MockKeroLister.
+type MockKeroListerMockRecorder struct {
+	mock *MockKeroLister
+}
+
+// NewMockKeroLister creates a new mock instance.
+func NewMockKeroLister(ctrl *gomock.Controller) *MockKeroLister {
+	mock := &MockKeroLister{ctrl: ctrl}
+	mock.recorder = &MockKeroListerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockKeroLister) EXPECT() *MockKeroListerMockRecorder {
+	return m.recorder
+}
+
+// FindAll mocks base method.
+func (m *MockKeroLister) FindAll(ctx context.Context) ([]*entity.Kero, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FindAll", ctx)
+	ret0, _ := ret[0].([]*entity.Kero)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// FindAll indicates an expected call of FindAll.
+func (mr *MockKeroListerMockRecorder) FindAll(ctx any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindAll", reflect.TypeOf((*MockKeroLister)(nil).FindAll), ctx)
 }
 
 // MockKeroUpdater is a mock of KeroUpdater interface.
@@ -172,7 +196,7 @@ func (m *MockKeroDeleter) EXPECT() *MockKeroDeleterMockRecorder {
 }
 
 // Delete mocks base method.
-func (m *MockKeroDeleter) Delete(ctx context.Context, id int64) error {
+func (m *MockKeroDeleter) Delete(ctx context.Context, id string) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", ctx, id)
 	ret0, _ := ret[0].(error)
