@@ -6,6 +6,7 @@ services:
       POSTGRES_USER: pond
       POSTGRES_PASSWORD: pondpass
       POSTGRES_DB: pond_dev
+      TZ: 'UTC'
     ports:
       - "5432:5432"
     healthcheck:
