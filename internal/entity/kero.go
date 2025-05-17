@@ -3,7 +3,7 @@ package entity
 import "time"
 
 type Kero struct {
-	ID        int64     `json:"id"`
+	ID        string    `json:"id"`
 	Title     string    `json:"title"`
 	Content   string    `json:"content"`
 	CreatedAt time.Time `json:"created_at"`
