@@ -1,8 +1,6 @@
 package postgres
 
-import (
-	"database/sql"
-)
+import "database/sql"
 
 type keroRepository struct {
 	db *sql.DB
