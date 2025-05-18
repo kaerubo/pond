@@ -1,0 +1,18 @@
+pkgname = "boil"
+output = "boil"
+wipe = true
+no-tests = true
+no-hooks = true
+add-enum-types = true
+no-auto-timestamps  = true
+no-relation-getters = true
+
+[psql]
+  dbname = "pond_dev"
+  host = "localhost"
+  port = 5432
+  user = "pond"
+  pass = "pondpass"
+  sslmode = "disable"
+  blacklist = ["schema_migrations"]
+  schema = "public"
