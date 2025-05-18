@@ -16,7 +16,7 @@ sqlboiler psql
 
 ## Notes
 
-- Make sure you're inside the internal/db directory when running the command,
+- Make sure you're inside the `internal/db` directory when running the command,
   as the sqlboiler.toml file is expected to be located there
 - You must run database migrations first (`make up`) so the tables exist
 - Should regenerate after any schema change

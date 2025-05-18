@@ -3,10 +3,9 @@ package usecase
 import (
 	"context"
 	"errors"
-	"time"
-
 	"github.com/kaerubo/pond/internal/entity"
 	"github.com/kaerubo/pond/internal/repository"
+	"time"
 )
 
 type keroUpdater struct {

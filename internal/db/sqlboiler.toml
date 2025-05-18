@@ -1,5 +1,3 @@
-pkgname = "boil"
-output = "boil"
 wipe = true
 no-tests = true
 no-hooks = true
