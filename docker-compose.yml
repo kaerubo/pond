@@ -1,16 +1,16 @@
 services:
   postgres:
     image: postgres:15
-    container_name: pond-postgres
+    container_name: kaeruashi-postgres
     environment:
-      POSTGRES_USER: pond
-      POSTGRES_PASSWORD: pondpass
-      POSTGRES_DB: pond_dev
+      POSTGRES_USER: kaeruashi
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: kaeruashi-dev
       TZ: 'UTC'
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U pond"]
+      test: ["CMD-SHELL", "pg_isready -U kaeruashi"]
       interval: 3s
       timeout: 2s
       retries: 5

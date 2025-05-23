@@ -1,6 +1,6 @@
 # Development Conventions
 
-## 📂 Branch Naming Convention
+## Branch Naming Convention
 
 Use the following pattern for naming branches:
 

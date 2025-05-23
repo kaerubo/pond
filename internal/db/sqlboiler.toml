@@ -6,11 +6,11 @@ no-auto-timestamps  = true
 no-relation-getters = true
 
 [psql]
-  dbname = "pond_dev"
+  dbname = "kaeruashi-dev"
   host = "localhost"
   port = 5432
-  user = "pond"
-  pass = "pondpass"
+  user = "kaeruashi"
+  pass = "pass"
   sslmode = "disable"
   blacklist = ["schema_migrations"]
   schema = "public"

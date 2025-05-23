@@ -1,5 +1,5 @@
 MIGRATION_DIR = db/migrations
-DB_URL=postgres://pond:pondpass@localhost:5432/pond_dev?sslmode=disable
+DB_URL=postgres://kaeruashi:pass@localhost:5432/kaeruashi-dev?sslmode=disable
 TIME_FORMAT = 20060102_150405
 MIGRATE=migrate -path $(MIGRATION_DIR) -database $(DB_URL)
 

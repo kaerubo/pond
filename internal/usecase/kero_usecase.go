@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"context"
-	"github.com/kaerubo/pond/internal/entity"
+	"github.com/kaerubo/kaeruashi/internal/entity"
 )
 
 type KeroCreator interface {

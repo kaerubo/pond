@@ -3,7 +3,7 @@ package usecase
 import (
 	"context"
 	"errors"
-	"github.com/kaerubo/pond/internal/repository"
+	"github.com/kaerubo/kaeruashi/internal/repository"
 )
 
 type keroDeleter struct {

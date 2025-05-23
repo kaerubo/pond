@@ -13,7 +13,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	entity "github.com/kaerubo/pond/internal/entity"
+	entity "github.com/kaerubo/kaeruashi/internal/entity"
 	gomock "go.uber.org/mock/gomock"
 )
 

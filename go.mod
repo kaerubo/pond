@@ -1,4 +1,4 @@
-module github.com/kaerubo/pond
+module github.com/kaerubo/kaeruashi
 
 go 1.24.2
 

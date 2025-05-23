@@ -25,7 +25,7 @@ db/migrations/
 The Makefile assumes the following local development database:
 
 ```
-postgres://pond:pondpass@localhost:5432/pond_dev?sslmode=disable
+postgres://kaeruashi:kaeruashipass@localhost:5432/kaeruashi_dev?sslmode=disable
 ```
 
 ## Available Commands

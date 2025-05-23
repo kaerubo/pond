@@ -3,9 +3,9 @@ package usecase_test
 import (
 	"context"
 	"errors"
-	"github.com/kaerubo/pond/internal/entity"
-	"github.com/kaerubo/pond/internal/test/mock"
-	"github.com/kaerubo/pond/internal/usecase"
+	"github.com/kaerubo/kaeruashi/internal/entity"
+	"github.com/kaerubo/kaeruashi/internal/test/mock"
+	"github.com/kaerubo/kaeruashi/internal/usecase"
 	"go.uber.org/mock/gomock"
 	"testing"
 )

@@ -3,9 +3,9 @@ package postgres
 import (
 	"context"
 	"database/sql"
-	"github.com/kaerubo/pond/internal/db/models"
-	"github.com/kaerubo/pond/internal/entity"
-	"github.com/kaerubo/pond/internal/repository"
+	"github.com/kaerubo/kaeruashi/internal/db/models"
+	"github.com/kaerubo/kaeruashi/internal/entity"
+	"github.com/kaerubo/kaeruashi/internal/repository"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
