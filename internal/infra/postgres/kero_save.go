@@ -2,22 +2,12 @@ package postgres
 
 import (
 	"context"
-	"database/sql"
 	"github.com/kaerubo/kaeruashi/internal/db/models"
 	"github.com/kaerubo/kaeruashi/internal/entity"
-	"github.com/kaerubo/kaeruashi/internal/repository"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
-type KeroSave struct {
-	db *sql.DB
-}
-
-func NewKeroSave(db *sql.DB) repository.KeroSaver {
-	return &KeroSave{db: db}
-}
-
-func (s *KeroSave) Save(ctx context.Context, k *entity.Kero) error {
+func (r *keroRepository) Save(ctx context.Context, k *entity.Kero) error {
 	model := &models.Kero{
 		ID:        k.ID,
 		Title:     k.Title,
@@ -25,6 +15,5 @@ func (s *KeroSave) Save(ctx context.Context, k *entity.Kero) error {
 		CreatedAt: k.CreatedAt,
 		UpdatedAt: k.UpdatedAt,
 	}
-
-	return model.Insert(ctx, s.db, boil.Infer())
+	return model.Insert(ctx, r.db, boil.Infer())
 }
