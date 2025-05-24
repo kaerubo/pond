@@ -9,10 +9,17 @@ import (
 
 type KeroHandler struct {
 	creator usecase.KeroCreator
+	reader  usecase.KeroByIDReader
 }
 
-func NewKeroHandler(creator usecase.KeroCreator) *KeroHandler {
-	return &KeroHandler{creator: creator}
+func NewKeroHandler(
+	creator usecase.KeroCreator,
+	reader usecase.KeroByIDReader,
+) *KeroHandler {
+	return &KeroHandler{
+		creator: creator,
+		reader:  reader,
+	}
 }
 
 type createKeroRequest struct {
@@ -39,4 +46,21 @@ func (h *KeroHandler) CreateKero(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusCreated, map[string]string{"id": kero.ID})
+}
+
+func (h *KeroHandler) FindKeroByID(c echo.Context) error {
+	id := c.Param("id")
+	if id == "" {
+		return echo.NewHTTPError(http.StatusBadRequest, "id is required")
+	}
+
+	kero, err := h.reader.GetByID(c.Request().Context(), id)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+	}
+	if kero == nil {
+		return echo.NewHTTPError(http.StatusNotFound, "kero not found")
+	}
+
+	return c.JSON(http.StatusOK, kero)
 }
