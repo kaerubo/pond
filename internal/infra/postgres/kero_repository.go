@@ -2,10 +2,10 @@ package postgres
 
 import "database/sql"
 
-type keroRepository struct {
+type KeroRepository struct {
 	db *sql.DB
 }
 
-func NewKeroRepository(db *sql.DB) *keroRepository {
-	return &keroRepository{db: db}
+func NewKeroRepository(db *sql.DB) *KeroRepository {
+	return &KeroRepository{db: db}
 }

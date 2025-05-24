@@ -9,7 +9,7 @@ import (
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
 )
 
-func (r *keroRepository) FindByID(ctx context.Context, id string) (*entity.Kero, error) {
+func (r *KeroRepository) FindByID(ctx context.Context, id string) (*entity.Kero, error) {
 	model, err := models.Keros(
 		qm.Where("id = ?", id),
 	).One(ctx, r.db)

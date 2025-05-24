@@ -7,7 +7,7 @@ import (
 	"github.com/volatiletech/sqlboiler/v4/boil"
 )
 
-func (r *keroRepository) Save(ctx context.Context, k *entity.Kero) error {
+func (r *KeroRepository) Save(ctx context.Context, k *entity.Kero) error {
 	model := &models.Kero{
 		ID:        k.ID,
 		Title:     k.Title,

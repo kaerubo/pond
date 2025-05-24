@@ -5,7 +5,9 @@ go 1.24.2
 require (
 	github.com/friendsofgo/errors v0.9.2
 	github.com/google/uuid v1.6.0
+	github.com/google/wire v0.6.0
 	github.com/labstack/echo/v4 v4.13.4
+	github.com/lib/pq v1.10.6
 	github.com/volatiletech/sqlboiler/v4 v4.19.0
 	github.com/volatiletech/strmangle v0.0.6
 	go.uber.org/mock v0.5.2
