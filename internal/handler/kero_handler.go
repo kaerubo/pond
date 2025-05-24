@@ -10,19 +10,33 @@ import (
 type KeroHandler struct {
 	creator usecase.KeroCreator
 	reader  usecase.KeroByIDReader
+	lister  usecase.KeroLister
+	updater usecase.KeroUpdater
+	deleter usecase.KeroDeleter
 }
 
 func NewKeroHandler(
 	creator usecase.KeroCreator,
 	reader usecase.KeroByIDReader,
+	lister usecase.KeroLister,
+	updater usecase.KeroUpdater,
+	deleter usecase.KeroDeleter,
 ) *KeroHandler {
 	return &KeroHandler{
 		creator: creator,
 		reader:  reader,
+		lister:  lister,
+		updater: updater,
+		deleter: deleter,
 	}
 }
 
 type createKeroRequest struct {
+	Title   string `json:"title"`
+	Content string `json:"content"`
+}
+
+type updateKeroRequest struct {
 	Title   string `json:"title"`
 	Content string `json:"content"`
 }
@@ -63,4 +77,52 @@ func (h *KeroHandler) FindKeroByID(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, kero)
+}
+
+func (h *KeroHandler) ListKeros(c echo.Context) error {
+	keros, err := h.lister.List(c.Request().Context())
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, keros)
+}
+
+func (h *KeroHandler) UpdateKero(c echo.Context) error {
+	id := c.Param("id")
+	if id == "" {
+		return echo.NewHTTPError(http.StatusBadRequest, "id is required")
+	}
+
+	var req updateKeroRequest
+	if err := c.Bind(&req); err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "invalid request")
+	}
+	if req.Title == "" || req.Content == "" {
+		return echo.NewHTTPError(http.StatusBadRequest, "title and content are required")
+	}
+
+	kero := &entity.Kero{
+		ID:      id,
+		Title:   req.Title,
+		Content: req.Content,
+	}
+
+	if err := h.updater.Update(c.Request().Context(), kero); err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+	}
+
+	return c.NoContent(http.StatusNoContent)
+}
+
+func (h *KeroHandler) DeleteKero(c echo.Context) error {
+	id := c.Param("id")
+	if id == "" {
+		return echo.NewHTTPError(http.StatusBadRequest, "id is required")
+	}
+
+	if err := h.deleter.Delete(c.Request().Context(), id); err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+	}
+
+	return c.NoContent(http.StatusNoContent)
 }
