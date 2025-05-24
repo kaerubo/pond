@@ -3,11 +3,10 @@ package usecase_test
 import (
 	"context"
 	"errors"
-	"testing"
-
-	"github.com/kaerubo/pond/internal/test/mock"
-	"github.com/kaerubo/pond/internal/usecase"
+	"github.com/kaerubo/kaeruashi/internal/test/mock"
+	"github.com/kaerubo/kaeruashi/internal/usecase"
 	"go.uber.org/mock/gomock"
+	"testing"
 )
 
 func TestKeroDeleter_Delete(t *testing.T) {

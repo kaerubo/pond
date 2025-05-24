@@ -3,11 +3,10 @@ package usecase
 import (
 	"context"
 	"errors"
-	"time"
-
 	"github.com/google/uuid"
-	"github.com/kaerubo/pond/internal/entity"
-	"github.com/kaerubo/pond/internal/repository"
+	"github.com/kaerubo/kaeruashi/internal/entity"
+	"github.com/kaerubo/kaeruashi/internal/repository"
+	"time"
 )
 
 type keroCreator struct {

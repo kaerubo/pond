@@ -2,9 +2,8 @@ package usecase
 
 import (
 	"context"
-
-	"github.com/kaerubo/pond/internal/entity"
-	"github.com/kaerubo/pond/internal/repository"
+	"github.com/kaerubo/kaeruashi/internal/entity"
+	"github.com/kaerubo/kaeruashi/internal/repository"
 )
 
 type keroLister struct {

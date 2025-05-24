@@ -1,0 +1,16 @@
+wipe = true
+no-tests = true
+no-hooks = true
+add-enum-types = true
+no-auto-timestamps  = true
+no-relation-getters = true
+
+[psql]
+  dbname = "kaeruashi-dev"
+  host = "localhost"
+  port = 5432
+  user = "kaeruashi"
+  pass = "pass"
+  sslmode = "disable"
+  blacklist = ["schema_migrations"]
+  schema = "public"

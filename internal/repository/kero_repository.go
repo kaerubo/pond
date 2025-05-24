@@ -3,8 +3,7 @@ package repository
 
 import (
 	"context"
-
-	"github.com/kaerubo/pond/internal/entity"
+	"github.com/kaerubo/kaeruashi/internal/entity"
 )
 
 type KeroSaver interface {
