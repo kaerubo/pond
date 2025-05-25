@@ -7,10 +7,10 @@ import (
 )
 
 type keroLister struct {
-	repo repository.KeroLister
+	repo repository.KeroFinder
 }
 
-func NewKeroLister(repo repository.KeroLister) KeroLister {
+func NewKeroLister(repo repository.KeroFinder) KeroLister {
 	return &keroLister{repo: repo}
 }
 

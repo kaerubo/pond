@@ -1,4 +1,4 @@
-//go:generate mockgen -source=kero_repository.go -destination=../../internal/test/mock/kero_repository.go -package=mock
+//go:generate mockgen -source=kero_repository.go -destination=mock/kero_repository.go -package=mock
 package repository
 
 import (
@@ -6,15 +6,15 @@ import (
 	"github.com/kaerubo/kaeruashi/internal/entity"
 )
 
-type KeroSaver interface {
-	Save(ctx context.Context, k *entity.Kero) error
+type KeroInserter interface {
+	Insert(ctx context.Context, k *entity.Kero) error
 }
 
 type KeroByIDFinder interface {
 	FindByID(ctx context.Context, id string) (*entity.Kero, error)
 }
 
-type KeroLister interface {
+type KeroFinder interface {
 	FindAll(ctx context.Context) ([]*entity.Kero, error)
 }
 

@@ -10,10 +10,10 @@ import (
 )
 
 type keroCreator struct {
-	repo repository.KeroSaver
+	repo repository.KeroInserter
 }
 
-func NewKeroCreator(repo repository.KeroSaver) KeroCreator {
+func NewKeroCreator(repo repository.KeroInserter) KeroCreator {
 	return &keroCreator{repo: repo}
 }
 
@@ -30,5 +30,5 @@ func (u *keroCreator) Create(ctx context.Context, k *entity.Kero) error {
 	k.CreatedAt = now
 	k.UpdatedAt = now
 
-	return u.repo.Save(ctx, k)
+	return u.repo.Insert(ctx, k)
 }

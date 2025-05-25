@@ -1,3 +1,4 @@
+//go:generate mockgen -source=kero_usecase.go -destination=mock/kero_usecase.go -package=mock
 package usecase
 
 import (
@@ -9,8 +10,8 @@ type KeroCreator interface {
 	Create(ctx context.Context, k *entity.Kero) error
 }
 
-type KeroByIDReader interface {
-	GetByID(ctx context.Context, id string) (*entity.Kero, error)
+type KeroByIDFinder interface {
+	FindByID(ctx context.Context, id string) (*entity.Kero, error)
 }
 
 type KeroLister interface {

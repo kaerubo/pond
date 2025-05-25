@@ -9,7 +9,7 @@ import (
 
 type KeroHandler struct {
 	creator usecase.KeroCreator
-	reader  usecase.KeroByIDReader
+	finder  usecase.KeroByIDFinder
 	lister  usecase.KeroLister
 	updater usecase.KeroUpdater
 	deleter usecase.KeroDeleter
@@ -17,14 +17,14 @@ type KeroHandler struct {
 
 func NewKeroHandler(
 	creator usecase.KeroCreator,
-	reader usecase.KeroByIDReader,
+	finder usecase.KeroByIDFinder,
 	lister usecase.KeroLister,
 	updater usecase.KeroUpdater,
 	deleter usecase.KeroDeleter,
 ) *KeroHandler {
 	return &KeroHandler{
 		creator: creator,
-		reader:  reader,
+		finder:  finder,
 		lister:  lister,
 		updater: updater,
 		deleter: deleter,
@@ -68,7 +68,7 @@ func (h *KeroHandler) FindKeroByID(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, "id is required")
 	}
 
-	kero, err := h.reader.GetByID(c.Request().Context(), id)
+	kero, err := h.finder.FindByID(c.Request().Context(), id)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}

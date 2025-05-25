@@ -9,7 +9,7 @@ package wire
 import (
 	"database/sql"
 	"github.com/kaerubo/kaeruashi/internal/handler"
-	"github.com/kaerubo/kaeruashi/internal/infra/postgres"
+	"github.com/kaerubo/kaeruashi/internal/infrastructure/postgres"
 	"github.com/kaerubo/kaeruashi/internal/usecase"
 )
 
@@ -18,10 +18,10 @@ import (
 func InitializeHandler(db *sql.DB) *handler.KeroHandler {
 	keroRepository := postgres.NewKeroRepository(db)
 	keroCreator := usecase.NewKeroCreator(keroRepository)
-	keroByIDReader := usecase.NewKeroByIDReader(keroRepository)
+	keroByIDFinder := usecase.NewKeroByIDFinder(keroRepository)
 	keroLister := usecase.NewKeroLister(keroRepository)
 	keroUpdater := usecase.NewKeroUpdater(keroRepository)
 	keroDeleter := usecase.NewKeroDeleter(keroRepository)
-	keroHandler := handler.NewKeroHandler(keroCreator, keroByIDReader, keroLister, keroUpdater, keroDeleter)
+	keroHandler := handler.NewKeroHandler(keroCreator, keroByIDFinder, keroLister, keroUpdater, keroDeleter)
 	return keroHandler
 }
