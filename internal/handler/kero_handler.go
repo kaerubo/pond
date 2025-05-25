@@ -1,10 +1,7 @@
 package handler
 
 import (
-	"github.com/kaerubo/kaeruashi/internal/entity"
 	"github.com/kaerubo/kaeruashi/internal/usecase"
-	"github.com/labstack/echo/v4"
-	"net/http"
 )
 
 type KeroHandler struct {
@@ -29,100 +26,4 @@ func NewKeroHandler(
 		updater: updater,
 		deleter: deleter,
 	}
-}
-
-type createKeroRequest struct {
-	Title   string `json:"title"`
-	Content string `json:"content"`
-}
-
-type updateKeroRequest struct {
-	Title   string `json:"title"`
-	Content string `json:"content"`
-}
-
-func (h *KeroHandler) CreateKero(c echo.Context) error {
-	var req createKeroRequest
-	if err := c.Bind(&req); err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "invalid request")
-	}
-	if req.Title == "" || req.Content == "" {
-		return echo.NewHTTPError(http.StatusBadRequest, "title and content are required")
-	}
-
-	kero := &entity.Kero{
-		Title:   req.Title,
-		Content: req.Content,
-	}
-
-	if err := h.creator.Create(c.Request().Context(), kero); err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
-	}
-
-	return c.JSON(http.StatusCreated, map[string]string{"id": kero.ID})
-}
-
-func (h *KeroHandler) FindKeroByID(c echo.Context) error {
-	id := c.Param("id")
-	if id == "" {
-		return echo.NewHTTPError(http.StatusBadRequest, "id is required")
-	}
-
-	kero, err := h.finder.FindByID(c.Request().Context(), id)
-	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
-	}
-	if kero == nil {
-		return echo.NewHTTPError(http.StatusNotFound, "kero not found")
-	}
-
-	return c.JSON(http.StatusOK, kero)
-}
-
-func (h *KeroHandler) ListKeros(c echo.Context) error {
-	keros, err := h.lister.List(c.Request().Context())
-	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
-	}
-	return c.JSON(http.StatusOK, keros)
-}
-
-func (h *KeroHandler) UpdateKero(c echo.Context) error {
-	id := c.Param("id")
-	if id == "" {
-		return echo.NewHTTPError(http.StatusBadRequest, "id is required")
-	}
-
-	var req updateKeroRequest
-	if err := c.Bind(&req); err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "invalid request")
-	}
-	if req.Title == "" || req.Content == "" {
-		return echo.NewHTTPError(http.StatusBadRequest, "title and content are required")
-	}
-
-	kero := &entity.Kero{
-		ID:      id,
-		Title:   req.Title,
-		Content: req.Content,
-	}
-
-	if err := h.updater.Update(c.Request().Context(), kero); err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
-	}
-
-	return c.NoContent(http.StatusNoContent)
-}
-
-func (h *KeroHandler) DeleteKero(c echo.Context) error {
-	id := c.Param("id")
-	if id == "" {
-		return echo.NewHTTPError(http.StatusBadRequest, "id is required")
-	}
-
-	if err := h.deleter.Delete(c.Request().Context(), id); err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
-	}
-
-	return c.NoContent(http.StatusNoContent)
 }
