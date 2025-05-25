@@ -3,7 +3,7 @@ package usecase_test
 import (
 	"context"
 	"github.com/kaerubo/kaeruashi/internal/entity"
-	"github.com/kaerubo/kaeruashi/internal/test/mock"
+	"github.com/kaerubo/kaeruashi/internal/repository/mock"
 	"github.com/kaerubo/kaeruashi/internal/usecase"
 	"go.uber.org/mock/gomock"
 	"testing"
@@ -46,17 +46,17 @@ func TestKeroCreator_Create(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()
 
-			mockSaver := mock.NewMockKeroSaver(ctrl)
+			mockInserter := mock.NewMockKeroInserter(ctrl)
 			c := context.Background()
 
 			if !tt.wantErr {
-				mockSaver.
+				mockInserter.
 					EXPECT().
-					Save(c, tt.kero).
+					Insert(c, tt.kero).
 					Times(1)
 			}
 
-			creator := usecase.NewKeroCreator(mockSaver)
+			creator := usecase.NewKeroCreator(mockInserter)
 			err := creator.Create(c, tt.kero)
 
 			if tt.wantErr && err == nil {

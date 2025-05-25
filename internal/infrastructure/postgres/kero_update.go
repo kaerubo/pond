@@ -8,7 +8,7 @@ import (
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
 )
 
-func (r *keroRepository) Update(ctx context.Context, k *entity.Kero) error {
+func (r *KeroRepository) Update(ctx context.Context, k *entity.Kero) error {
 	model, err := models.Keros(qm.Where("id = ?", k.ID)).One(ctx, r.db)
 	if err != nil {
 		return err

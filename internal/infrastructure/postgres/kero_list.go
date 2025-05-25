@@ -6,7 +6,7 @@ import (
 	"github.com/kaerubo/kaeruashi/internal/entity"
 )
 
-func (r *keroRepository) FindAll(ctx context.Context) ([]*entity.Kero, error) {
+func (r *KeroRepository) FindAll(ctx context.Context) ([]*entity.Kero, error) {
 	modelsList, err := models.Keros().All(ctx, r.db)
 	if err != nil {
 		return nil, err

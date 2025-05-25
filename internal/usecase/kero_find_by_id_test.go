@@ -4,13 +4,13 @@ import (
 	"context"
 	"errors"
 	"github.com/kaerubo/kaeruashi/internal/entity"
-	"github.com/kaerubo/kaeruashi/internal/test/mock"
+	"github.com/kaerubo/kaeruashi/internal/repository/mock"
 	"github.com/kaerubo/kaeruashi/internal/usecase"
 	"go.uber.org/mock/gomock"
 	"testing"
 )
 
-func TestKeroReader_GetByID(t *testing.T) {
+func TestKeroByIDFinder_FindByID(t *testing.T) {
 	tests := []struct {
 		name      string
 		inputID   string
@@ -55,8 +55,8 @@ func TestKeroReader_GetByID(t *testing.T) {
 			mockFinder := mock.NewMockKeroByIDFinder(ctrl)
 			tt.setupMock(mockFinder)
 
-			reader := usecase.NewKeroByIDReader(mockFinder)
-			_, err := reader.GetByID(context.Background(), tt.inputID)
+			finder := usecase.NewKeroByIDFinder(mockFinder)
+			_, err := finder.FindByID(context.Background(), tt.inputID)
 
 			if tt.wantErr && err == nil {
 				t.Errorf("expected error, got nil")

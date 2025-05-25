@@ -7,15 +7,15 @@ import (
 	"github.com/kaerubo/kaeruashi/internal/repository"
 )
 
-type keroReader struct {
+type keroByIDFinder struct {
 	repo repository.KeroByIDFinder
 }
 
-func NewKeroByIDReader(repo repository.KeroByIDFinder) KeroByIDReader {
-	return &keroReader{repo: repo}
+func NewKeroByIDFinder(repo repository.KeroByIDFinder) KeroByIDFinder {
+	return &keroByIDFinder{repo: repo}
 }
 
-func (r *keroReader) GetByID(ctx context.Context, id string) (*entity.Kero, error) {
+func (r *keroByIDFinder) FindByID(ctx context.Context, id string) (*entity.Kero, error) {
 	if id == "" {
 		return nil, errors.New("id is required")
 	}

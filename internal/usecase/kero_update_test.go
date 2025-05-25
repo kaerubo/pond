@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/kaerubo/kaeruashi/internal/entity"
-	"github.com/kaerubo/kaeruashi/internal/test/mock"
+	"github.com/kaerubo/kaeruashi/internal/repository/mock"
 	"github.com/kaerubo/kaeruashi/internal/usecase"
 	"go.uber.org/mock/gomock"
 	"testing"
